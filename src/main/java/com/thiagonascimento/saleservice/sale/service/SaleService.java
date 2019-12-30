@@ -18,10 +18,16 @@ public class SaleService {
     private SaleRepository repository;
 
     public Mono<String> sale(Sale sale) {
-        Double totalValue = sale.getItems().stream().map(Item::getPrice).reduce(0D, Double::sum);
-        sale.setTotalValue(totalValue);
+        calculateTotalValue(sale);
         sale.setCreationDate(LocalDate.now());
         return repository.insert(sale).map(Sale::getId);
+    }
+
+    private void calculateTotalValue(Sale sale) {
+        Double totalValue = sale.getItems().stream()
+                .map((Item item) -> item.getPrice() * item.getQuantity())
+                .reduce(0D, Double::sum);
+        sale.setTotalValue(totalValue);
     }
 
     public Flux<Sale> find(FindSaleParameters parameters) {

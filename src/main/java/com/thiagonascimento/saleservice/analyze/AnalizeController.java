@@ -2,7 +2,7 @@ package com.thiagonascimento.saleservice.analyze;
 
 import com.thiagonascimento.saleservice.analyze.dto.AnalizeDTO;
 import com.thiagonascimento.saleservice.analyze.mapper.AnalizeMapper;
-import com.thiagonascimento.saleservice.analyze.service.AnalizeService;
+import com.thiagonascimento.saleservice.analyze.service.AnalyzeService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +11,13 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/sales/v1/analize")
+@RequestMapping("/sales/v1/analyze")
 public class AnalizeController {
 
-    private AnalizeService service;
+    private AnalyzeService service;
 
     @GetMapping
-    public Mono<AnalizeDTO> analize() {
-        return service.analize().map(AnalizeMapper::mapToDTO);
+    public Mono<AnalizeDTO> analyze() {
+        return service.analyze().map(AnalizeMapper::mapToDTO);
     }
 }

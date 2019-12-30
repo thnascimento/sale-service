@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class Analize {
+public class Analyze {
     private Long customerQuantity;
     private Long salesmanQuantity;
     private String mostExpensiveSaleId;

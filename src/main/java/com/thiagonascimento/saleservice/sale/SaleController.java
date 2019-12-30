@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @RestController
 @AllArgsConstructor
 @Validated
-@RequestMapping("/sales/v1/sale")
+@RequestMapping("/sales/v1/sales")
 public class SaleController {
 
     private SaleService service;
@@ -26,9 +26,9 @@ public class SaleController {
     }
 
     @GetMapping
-    public Flux<SaleDTO> find(@RequestParam("id") String id,
-                              @RequestParam("initial_date") LocalDate initialDate,
-                              @RequestParam("final_date") LocalDate finalDate) {
+    public Flux<SaleDTO> find(@RequestParam(value = "id", required = false) String id,
+                              @RequestParam(value = "initial_date", required = false) LocalDate initialDate,
+                              @RequestParam(value = "final_date", required = false) LocalDate finalDate) {
         return service.find(FindSaleParametersFactory.findSaleParameters(id, initialDate, finalDate))
                 .map(SaleMapper::mapToDTO);
     }
