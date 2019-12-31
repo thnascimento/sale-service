@@ -5,23 +5,24 @@ import com.thiagonascimento.saleservice.sale.factory.FindSaleParametersFactory;
 import com.thiagonascimento.saleservice.sale.mapper.SaleMapper;
 import com.thiagonascimento.saleservice.sale.service.SaleService;
 import lombok.AllArgsConstructor;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 @RestController
 @AllArgsConstructor
-@Validated
 @RequestMapping("/sales/v1/sales")
 public class SaleController {
 
     private SaleService service;
 
     @PostMapping
-    public Mono<String> sale(@RequestBody SaleDTO sale) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<String> sale(@Valid @RequestBody SaleDTO sale) {
         return service.sale(SaleMapper.mapToModel(sale));
     }
 

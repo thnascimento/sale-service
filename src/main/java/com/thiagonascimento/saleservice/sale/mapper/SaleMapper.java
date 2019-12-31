@@ -14,6 +14,7 @@ public class SaleMapper {
 
     public static SaleDTO mapToDTO(Sale sale) {
         return SaleDTO.builder()
+                .id(sale.getId())
                 .items(ItemMapper.mapToDTOList(sale.getItems()))
                 .salesmanName(sale.getSalesmanName())
                 .totalValue(sale.getTotalValue())

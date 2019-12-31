@@ -4,9 +4,12 @@ import com.thiagonascimento.saleservice.salesman.dto.SalesmanDTO;
 import com.thiagonascimento.saleservice.salesman.mapper.SalesmanMapper;
 import com.thiagonascimento.saleservice.salesman.service.SalesmanService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
@@ -16,7 +19,8 @@ public class SalesmanController {
     private SalesmanService service;
 
     @PostMapping
-    public Mono<String> create(@RequestBody SalesmanDTO salesmanDTO) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<String> create(@Valid @RequestBody SalesmanDTO salesmanDTO) {
         return service.create(SalesmanMapper.mapToModel(salesmanDTO));
     }
 
