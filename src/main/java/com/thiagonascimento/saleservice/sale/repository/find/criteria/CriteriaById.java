@@ -15,6 +15,6 @@ public class CriteriaById implements CriteriaGenerator {
 
     @Override
     public void addCriteria(FindSaleParameters parameters, Criteria criteria) {
-        criteria.is(parameters.getId());
+        criteria.and("id").is(parameters.getId());
     }
 }

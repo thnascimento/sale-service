@@ -19,7 +19,7 @@ public class SaleFindRepositoryImpl implements SaleFindRepository {
 
     @Override
     public Flux<Sale> find(FindSaleParameters parameters) {
-        var criteria = new Criteria();
+        var criteria = Criteria.where("items").exists(true);
         criteriaGenerators.forEach((CriteriaGenerator criteriaGenerator) -> {
             if (criteriaGenerator.parameterIsPresent(parameters))
                 criteriaGenerator.addCriteria(parameters, criteria);

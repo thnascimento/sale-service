@@ -18,6 +18,7 @@ public class SaleMapper {
                 .items(ItemMapper.mapToDTOList(sale.getItems()))
                 .salesmanName(sale.getSalesmanName())
                 .totalValue(sale.getTotalValue())
+                .creationDate(sale.getCreationDate())
                 .build();
     }
 }
