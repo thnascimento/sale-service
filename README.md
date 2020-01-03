@@ -23,8 +23,6 @@ Exemplo:
 <strong>systemProp.javax.net.ssl.trustStore=/usr/lib/jvm/java-11-openjdk-amd64/jre/lib/security/cacerts</strong> 
 <br />
 <br />
-<br />
-<br />
 </p>
 
 ## Testando o projeto
@@ -45,8 +43,6 @@ HTTP utilizando o método POST no endpoint: <strong>http://localhost:8080/sales/
 <p>
 É possível executar a análise dos dados através do endpoint: <br />
 <strong>[GET] http://localhost:8080/sales/v1/analyze</strong>
-<br />
-<br />
 <br />
 <br />
 </p>
