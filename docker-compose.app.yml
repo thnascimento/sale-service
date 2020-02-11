@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  sales-mongodb:
+    image: mongo
+    container_name: sales-mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongoconfig:/data/configdb
+    networks:
+      - app-network
+
+  sales-service:
+    build: . # it reads Dockerfile on this folder
+    container_name: sales-service
+    restart: always
+    depends_on:
+      - sales-mongodb
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
+
+
+volumes:
+  # default dir on Ubuntu: /var/lib/docker/volumes
+  mongodb:
+  mongoconfig:
+
+networks:
+  app-network:
+    driver: bridge
